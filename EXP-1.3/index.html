@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg-dark: linear-gradient(135deg, #0f172a, #020617);
+            --bg-light: linear-gradient(135deg, #e5e7eb, #f8fafc);
+            --card-dark: rgba(255, 255, 255, 0.08);
+            --card-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #ffffff;
+            --text-light: #111827;
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            min-height: 100vh;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            transition: 0.3s ease;
+        }
+
+        body.light {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .dashboard {
+            padding: 30px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: inherit;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Layout */
+        .content {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 25px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--card-dark);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 20px;
+            height: 380px;
+        }
+
+        body.light .sidebar,
+        body.light .card {
+            background: var(--card-light);
+        }
+
+        .sidebar h3 {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            background: var(--card-dark);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 30px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="header">
+        <h1>Admin Dashboard</h1>
+        <button class="toggle-btn" onclick="toggleMode()">🌞 Light Mode</button>
+    </div>
+
+    <div class="content">
+        <div class="sidebar">
+            <h3>Navigation</h3>
+        </div>
+
+        <div class="cards">
+            <div class="card">Analytics</div>
+            <div class="card">Users</div>
+            <div class="card">Settings</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleMode() {
+        document.body.classList.toggle("light");
+    }
+</script>
+
+</body>
+</html>
