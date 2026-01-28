@@ -1,70 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resposive bank UI</title>
-        <style>
-            #b1
-            {
-                background-color: red;
-                color: white;
-            }
-            #b2
-            {
-                background-color: blue;
-                color: white;
-            }
-        </style>
-    </head>
-    <body>
-        <h2>balance : $ <span id="balance"></span></h2>
-        <label for="amount">Amount:</label><br></br>
-        <input type="number" placeholder="Paisa enter karo" id="amount">
-        <br><br>
-        <button id="b1" onclick="deposit()">Deposit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="b2" onclick="withdraw()">Withdraw</button>
-        <p id="message"></p>
 
-    </body>
-    <script>
-        let balance = 0;
-        function deposit()
-        {
-            let paisa = document.getElementById('amount').value;
-            if(paisa > 0)
-            {
-                balance = balance + parseFloat(paisa);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resposive bank UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Resposive bank UI</h1>
+        <div class="details">
+            <h2 class="bal">Balance : $ <span id="balance"></span></h2>
+            <label for="amount" class="amo">Amount:</label>
+            <input type="number" placeholder="Paisa enter karo" id="amount">
+            <div class="but">
+                <button id="b1" class="buttons" onclick="deposit()">Deposit</button>
+                <button id="b2" class="buttons" onclick="withdraw()">Withdraw</button>
+            </div>
+            <p id="message"></p>
+        </div>
+    </div>
+</body>
+<script>
+    let balance = 0;
+    function deposit() {
+        let paisa = document.getElementById('amount').value;
+        if (paisa > 0) {
+            balance = balance + parseFloat(paisa);
+            document.getElementById('balance').innerText = balance;
+            document.getElementById('message').innerText = "Successfully deposited";
+        }
+        else {
+            document.getElementById("message").innerText = "Please enter a valid amount to deposit.";
+        }
+        document.getElementById('amount').value = '';
+    }
+    function withdraw() {
+        let paisa = document.getElementById('amount').value;
+        if (paisa > 0) {
+            if (paisa <= balance) {
+                balance = balance - parseFloat(paisa);
                 document.getElementById('balance').innerText = balance;
-                document.getElementById('message').innerText = "Successfully deposited";
+                document.getElementById('message').innerText = "Successfully withdraw";
             }
-            else
-            {
-                document.getElementById("message").innerText = "Please enter a valid amount to deposit.";
+            else {
+                document.getElementById("message").innerText = "Insufficient balance for this withdrawal.";
             }
-            document.getElementById('amount').value = '';
         }
-        function withdraw()
-        {
-            let paisa = document.getElementById('amount').value;
-            if(paisa > 0)
-            {
-                if(paisa <= balance)
-                {
-                    balance = balance - parseFloat(paisa);
-                    document.getElementById('balance').innerText = balance;
-                    document.getElementById('message').innerText = "Successfully withdraw";
-                }
-                else
-                {
-                    document.getElementById("message").innerText = "Insufficient balance for this withdrawal.";
-                }
-            }
-            else
-            {
-                document.getElementById("message").innerText = "Please enter a valid amount to withdraw.";
-            }
-            document.getElementById('amount').value = '';
+        else {
+            document.getElementById("message").innerText = "Please enter a valid amount to withdraw.";
         }
-    </script>
+        document.getElementById('amount').value = '';
+    }
+</script>
+
 </html>
