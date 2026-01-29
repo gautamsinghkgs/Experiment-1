@@ -18,8 +18,7 @@ body {
      background: linear-gradient(135deg, #eef2ff, #f8fafc);
      padding: 20px;
      border: 3px solid black;
-     border-radius: 8px;
-     
+     border-radius: 8px;  
 }
 
 .but {
@@ -91,4 +90,27 @@ input {
   padding: 10px 12px;
   font-size: 16px;
   border-radius: 6px;
+}
+
+#message {
+  display: none;
+  margin-top: 12px;  
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #c0d8cd;
+  font-weight: 600;
+}
+
+.success {
+  display: inline-block;
+  color: #166534;
+  background-color: #ecfdf5;
+  border: 2px solid #14532d;
+}
+
+.error {
+  display: inline-block;
+  color: #991b1b;
+  background-color: #fef2f2;
+  border: 2px solid #7f1d1d;
 }

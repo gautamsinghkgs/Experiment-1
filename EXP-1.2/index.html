@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,7 @@
         <div class="details">
             <h2 class="bal">Balance : $ <span id="balance"></span></h2>
             <label for="amount" class="amo">Amount:</label>
-            <input type="number" placeholder="Paisa enter karo" id="amount">
+            <input type="number" placeholder="Enter amount (USD)" id="amount">
             <div class="but">
                 <button id="b1" class="buttons" onclick="deposit()">Deposit</button>
                 <button id="b2" class="buttons" onclick="withdraw()">Withdraw</button>
@@ -24,36 +23,46 @@
     </div>
 </body>
 <script>
-    let balance = 0;
-    function deposit() {
-        let paisa = document.getElementById('amount').value;
-        if (paisa > 0) {
-            balance = balance + parseFloat(paisa);
-            document.getElementById('balance').innerText = balance;
-            document.getElementById('message').innerText = "Successfully deposited";
-        }
-        else {
-            document.getElementById("message").innerText = "Please enter a valid amount to deposit.";
-        }
-        document.getElementById('amount').value = '';
+  let balance = 0;
+  const msg = document.getElementById("message");
+
+  function showMessage(text, type) {
+    msg.innerText = text;
+    msg.className = type;   // success or error
+    msg.style.display = "inline-block";
+  }
+
+  function deposit() {
+    let paisa = document.getElementById('amount').value;
+
+    if (paisa > 0) {
+      balance += parseFloat(paisa);
+      document.getElementById('balance').innerText = balance;
+      showMessage("Deposit successful", "success");
+    } else {
+      showMessage("Please enter a valid amount to deposit.", "error");
     }
-    function withdraw() {
-        let paisa = document.getElementById('amount').value;
-        if (paisa > 0) {
-            if (paisa <= balance) {
-                balance = balance - parseFloat(paisa);
-                document.getElementById('balance').innerText = balance;
-                document.getElementById('message').innerText = "Successfully withdraw";
-            }
-            else {
-                document.getElementById("message").innerText = "Insufficient balance for this withdrawal.";
-            }
-        }
-        else {
-            document.getElementById("message").innerText = "Please enter a valid amount to withdraw.";
-        }
-        document.getElementById('amount').value = '';
+
+    document.getElementById('amount').value = '';
+  }
+
+  function withdraw() {
+    let paisa = document.getElementById('amount').value;
+
+    if (paisa > 0) {
+      if (paisa <= balance) {
+        balance -= parseFloat(paisa);
+        document.getElementById('balance').innerText = balance;
+        showMessage("Withdrawal successful", "success");
+      } else {
+        showMessage("Insufficient balance for this withdrawal.", "error");
+      }
+    } else {
+      showMessage("Please enter a valid amount to withdraw.", "error");
     }
+
+    document.getElementById('amount').value = '';
+  }
 </script>
 
 </html>
